@@ -1,0 +1,39 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<!-- eventos de teclado -->
+<div id="app">
+    <p>{{ contador }}</p>
+    <button v-on:click="somar(5, $event)">Somar</button>
+    <p v-on:mousemove="atualizarXY">
+        Mouse: {{ x }} e {{ y }}
+        <span v-on:mousemove.stop="">PARAR AQUI!!!!</span>
+    </p>
+
+    <a v-on:click.prevent="" href="https://google.com">Google</a>
+
+    <input type="text" v-on:keyup.enter="exibirAlerta">
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            somar(value, event) {
+                this.contador += value;
+            },
+            atualizarXY(event) {
+                this.x = event.clientX
+                this.y = event.clientY
+            },
+            exibirAlerta() {
+                alert('estou alertando');
+            }
+        }
+    });
+</script>

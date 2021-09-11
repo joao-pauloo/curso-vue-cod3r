@@ -1,0 +1,40 @@
+<script src="https://unpkg.com/vue"></script>
+
+<!--
+  Na propriedade computada o valor só é alterado quando necessário, no caso só será alterado quando contador for modificado.
+  Já um método normal iria ficar calculando o valor de contador sempre, mesmo que tenha sido modificado apenas o contador2.
+  Outra observação é que a propriedade computada é chamada sem ().
+-->
+<div id="app">
+  <button v-on:click="aumentar">Aumentar</button>
+  <button v-on:click="contador2++">Aumentar2</button>
+  <button v-on:click="diminuir">Diminuir</button>
+  <p>Contador: {{ contador }} | {{ contador2 }}</p>
+  <p>Resultado: {{ resultado }}</p>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      contador: 0,
+      contador2: 0,
+    },
+    computed: {
+      resultado() {
+        console.log('verificando total')
+
+        return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5';
+      }
+    },
+    methods: {
+      aumentar() {
+        this.contador++
+      },
+      diminuir() {
+        this.contador--
+      },
+
+    }
+  });
+</script>
